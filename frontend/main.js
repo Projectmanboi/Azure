@@ -3,11 +3,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
     getVisitCount();
 });
 
-const functionApi = 'http://localhost:7071/api/GetResumeCounter';
+const functionApiURL = 'https://getresumecounter77.azurewebsites.net/api/GetResumeCounter?code=Or_URyXIWplOlgpotRzhfYtxrz1bLR_jPpdnaB4xQSFiAzFuc6SJvg%3D%3D'
+const localFunctionApi = 'http://localhost:7071/api/GetResumeCounter';
 
 const getVisitCount = () => {
     console.log('Calling API:', functionApi);
-    fetch(functionApi)
+    fetch(functionApiUrl)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok ' + response.statusText);

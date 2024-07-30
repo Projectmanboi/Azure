@@ -1,104 +1,104 @@
 {
 	"version": "2.0.0",
 	"tasks": [
-	  {
-		"label": "restore (functions)",
-		"command": "dotnet",
-		"args": [
-		  "restore"
-		],
-		"type": "process",
-		"problemMatcher": "$msCompile",
-		"options": {
-		  "cwd": "${workspaceFolder}/backend/api"
-		}
-	  },
-	  {
-		"label": "clean (functions)",
-		"command": "dotnet",
-		"args": [
-		  "clean",
-		  "--configuration",
-		  "Release",
-		  "/property:GenerateFullPaths=true",
-		  "/consoleloggerparameters:NoSummary"
-		],
-		"type": "process",
-		"problemMatcher": "$msCompile",
-		"dependsOn": "restore (functions)",
-		"options": {
-		  "cwd": "${workspaceFolder}/backend/api"
-		}
-	  },
-	  {
-		"label": "build (functions)",
-		"command": "dotnet",
-		"args": [
-		  "build",
-		  "--configuration",
-		  "Release",
-		  "--framework",
-		  "net6.0",
-		  "/property:GenerateFullPaths=true",
-		  "/consoleloggerparameters:NoSummary"
-		],
-		"type": "process",
-		"dependsOn": "clean (functions)",
-		"group": {
-		  "kind": "build",
-		  "isDefault": true
+		{
+			"label": "restore (functions)",
+			"command": "dotnet",
+			"args": [
+				"restore"
+			],
+			"type": "process",
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/backend/api"
+			}
 		},
-		"problemMatcher": "$msCompile",
-		"options": {
-		  "cwd": "${workspaceFolder}/backend/api"
-		}
-	  },
-	  {
-		"label": "clean release (functions)",
-		"command": "dotnet",
-		"args": [
-		  "clean",
-		  "--configuration",
-		  "Release",
-		  "/property:GenerateFullPaths=true",
-		  "/consoleloggerparameters:NoSummary"
-		],
-		"type": "process",
-		"problemMatcher": "$msCompile",
-		"options": {
-		  "cwd": "${workspaceFolder}/backend/api"
-		}
-	  },
-	  {
-		"label": "publish (functions)",
-		"command": "dotnet",
-		"args": [
-		  "publish",
-		  "--configuration",
-		  "Release",
-		  "--framework",
-		  "net6.0",
-		  "--output",
-		  "${workspaceFolder}/backend/api/bin/Release/net6.0/publish",
-		  "/property:GenerateFullPaths=true",
-		  "/consoleloggerparameters:NoSummary"
-		],
-		"type": "process",
-		"dependsOn": "clean release (functions)",
-		"problemMatcher": "$msCompile",
-		"options": {
-		  "cwd": "${workspaceFolder}/backend/api"
-		}
-	  },
-	  {
-		"type": "func",
-		"dependsOn": "build (functions)",
-		"options": {
-		  "cwd": "${workspaceFolder}/backend/api/bin/Release/net6.0/publish"
+		{
+			"label": "clean (functions)",
+			"command": "dotnet",
+			"args": [
+				"clean",
+				"--configuration",
+				"Release",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"problemMatcher": "$msCompile",
+			"dependsOn": "restore (functions)",
+			"options": {
+				"cwd": "${workspaceFolder}/backend/api"
+			}
 		},
-		"command": "host start",
-		"isBackground": true,
-		"problemMatcher": "$func-dotnet-watch"
-	  }
+		{
+			"label": "build (functions)",
+			"command": "dotnet",
+			"args": [
+				"build",
+				"--configuration",
+				"Release",
+				"--framework",
+				"net6.0",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"dependsOn": "clean (functions)",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/backend/api"
+			}
+		},
+		{
+			"label": "clean release (functions)",
+			"command": "dotnet",
+			"args": [
+				"clean",
+				"--configuration",
+				"Release",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/backend/api"
+			}
+		},
+		{
+			"label": "publish (functions)",
+			"command": "dotnet",
+			"args": [
+				"publish",
+				"--configuration",
+				"Release",
+				"--framework",
+				"net6.0",
+				"--output",
+				"${workspaceFolder}/backend/api/bin/Release/net6.0/publish",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"dependsOn": "clean release (functions)",
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/backend/api"
+			}
+		},
+		{
+			"type": "func",
+			"dependsOn": "build (functions)",
+			"options": {
+				"cwd": "${workspaceFolder}/backend/api/bin/Release/net8.0/publish"
+			},
+			"command": "host start",
+			"isBackground": true,
+			"problemMatcher": "$func-dotnet-watch"
+		}
 	]
   }
